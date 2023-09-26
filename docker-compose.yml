@@ -1,0 +1,27 @@
+version: '2'
+services:
+  what_does_the_fox_say:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./what_does_the_fox_say
+      args:
+        - FLAG=0000000000
+        - FLAG_FILE=flag.txt
+    ports:
+      - 10001:80
+  sql_injection:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./sql_injection
+    environment:
+      - FLAG=0000000000
+    ports:
+      - 10002:80
+    volumes:
+      - ./sql_injection:/var/www/html
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - ./data:/var/lib/mysql
