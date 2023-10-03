@@ -17,10 +17,11 @@ services:
       - FLAG=0000000000
     ports:
       - 10002:80
-
+    volumes:
+      - ./sql_injection:/var/www/html
   ph-shop:
     build:
-      dockerfile: ./dockerfile
+      dockerfile: ./Dockerfile
       context: ./ph-shop
     environment:
       - FLAG=000000000
