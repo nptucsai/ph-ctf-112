@@ -1,0 +1,73 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(/bg.png);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.chat {
+  width: min(500px, 70vw);
+  height: calc(100% - 100px);
+  border-radius: 10px;
+  background-color: rgba(200, 200, 200, 0.7);
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+#chat-list {
+  overflow-y: auto;
+}
+
+.say {
+  position: relative;
+  background: #06c755;
+  border-radius: 0.4em;
+  width: 70%;
+  padding: 10px;
+  margin: 15px 0;
+}
+
+.say-right {
+  float: right;
+  transform: translateX(-25px);
+}
+
+.say-left {
+  float: left;
+  transform: translateX(25px);
+}
+
+.say.say-left:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #06c755;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
+}
+
+.say.say-right:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-left-color: #06c755;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-right: -20px;
+}
+
+.ph-btn {
+  border-radius: 0;
+}
