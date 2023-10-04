@@ -27,6 +27,16 @@ services:
       - FLAG=000000000
     ports:
       - 10003:3000
+  ssti:
+    build:
+      dockerfile: ./Dockerfile
+      context: ./ssti
+      args:
+        - FLAG=000000
+        - FLAG_FILE=flag.txt
+    ports:
+      - 10004:8080
+    user: 1023:1023
   db:
     image: mysql
     environment:
