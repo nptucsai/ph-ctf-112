@@ -7,26 +7,18 @@ services:
       args:
         - FLAG=0000000000
         - FLAG_FILE=flag.txt
-    ports:
-      - 10001:80
   sql_injection:
     build:
       dockerfile: ./Dockerfile
       context: ./sql_injection
     environment:
       - FLAG=0000000000
-    ports:
-      - 10002:80
-    volumes:
-      - ./sql_injection:/var/www/html
   ph-shop:
     build:
       dockerfile: ./Dockerfile
       context: ./ph-shop
     environment:
       - FLAG=000000000
-    ports:
-      - 10003:3000
   ssti:
     build:
       dockerfile: ./Dockerfile
@@ -34,8 +26,6 @@ services:
       args:
         - FLAG=000000
         - FLAG_FILE=flag.txt
-    ports:
-      - 10004:8080
     user: 1023:1023
   db:
     image: mysql
@@ -43,3 +33,13 @@ services:
       - MYSQL_ROOT_PASSWORD=password
     volumes:
       - ./_data:/var/lib/mysql
+  proxy:
+    build:
+      dockerfile: ./proxy.dockerfile
+      context: ./
+    ports:
+      - 10001:10001
+      - 10002:10002
+      - 10003:10003
+      - 10004:10004
+      - 10005:10005
